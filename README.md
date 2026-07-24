@@ -10,14 +10,26 @@ the Homelab Control Plane application itself is installed only inside the LXC.
 
 ## Project status
 
-The project is under development. Do not use placeholder or test releases on
-production infrastructure.
+The project is under development. The first published build is an installation
+preview: it proves LXC creation, signed package installation, HTTPS startup,
+and service readiness. It does not yet include the management dashboard or
+setup wizard. Do not use preview releases on production infrastructure.
 
 ## Installation
 
-Follow the [installation guide](docs/installation.md). Installable Debian
-packages, signed manifests, checksums, and software bills of materials are
-published as versioned GitHub Release assets.
+Open the Proxmox root shell and run:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Fouchger/homelab/main/install.sh)"
+```
+
+That command creates the LXC, installs the application inside it, checks the
+service, and prints the HTTPS address. There are no interactive installation
+steps. See the [installation guide](docs/installation.md) for requirements,
+the Debian option, and troubleshooting.
+
+Installable Debian packages, signed manifests, checksums, and software bills of
+materials are published as versioned GitHub Release assets.
 
 The application source and development history are maintained privately. This
 public repository contains reviewed installation material, public
