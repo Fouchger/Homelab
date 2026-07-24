@@ -1,10 +1,11 @@
-# Installation preview
+# Installation
 
 The preview installation is one command. It creates an unprivileged Ubuntu
 24.04 LXC, installs the signed Homelab Control Plane package inside it, starts
 the HTTPS service, checks readiness, and prints the address to open.
 
-It does not yet include the management dashboard or setup wizard.
+After installation, the service presents the first-run setup wizard and
+administrator dashboard over HTTPS.
 
 ## What you need
 
@@ -64,7 +65,7 @@ same way as other `curl | bash` installers. After that bootstrap, the script:
 8. verifies the signed release manifest and package digest;
 9. installs and starts the package;
 10. checks the local HTTPS readiness endpoint;
-11. prints the dashboard URL.
+11. prints the dashboard URL and one-time setup code.
 
 After the application is installed, the bootstrap removes its downloaded
 scripts, temporary state, and any temporary Community Scripts diagnostics file

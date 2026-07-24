@@ -14,10 +14,10 @@ the Homelab Control Plane application itself is installed only inside the LXC.
 
 ## Project status
 
-The project is under development. The first published build is an installation
-preview: it proves LXC creation, signed package installation, HTTPS startup,
-and service readiness. It does not yet include the management dashboard or
-setup wizard. Do not use preview releases on production infrastructure.
+The project is under development. Current preview releases provide the
+first-run setup wizard, administrator dashboard, signed updates, and the
+administrator-only Proxmox management area. Do not use preview releases on
+production infrastructure.
 
 ## Installation
 
