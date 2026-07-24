@@ -2,6 +2,9 @@
 
 set -Eeuo pipefail
 
+export LANG=C.UTF-8
+export LC_ALL=C.UTF-8
+
 readonly PRODUCT_NAME="homelab-controlplane"
 readonly RELEASE_REPOSITORY="Fouchger/homelab"
 readonly RELEASE_PUBLIC_KEY="RWSRvQRJKhWlzXJLLMSL9hDjc1WUzo09/7o1BmonsHV0qp0Jb0LZendD"

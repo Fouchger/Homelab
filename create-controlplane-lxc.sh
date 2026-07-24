@@ -267,7 +267,7 @@ clean_environment=(
   var_mknod="0"
   var_mount_fs=""
   var_net="dhcp"
-  var_nesting="0"
+  var_nesting="1"
   var_os="$operating_system_id"
   var_protection="no"
   var_ram="4096"
@@ -295,11 +295,12 @@ if ! pct status "$container_id" >/dev/null 2>&1; then
 fi
 
 # The current upstream builder enables keyctl for every unprivileged container
-# even when var_keyctl=0. Homelab Control Plane requires no optional LXC
-# features, so remove the complete upstream feature set before auditing it.
+# even when var_keyctl=0. Remove the complete upstream feature set, then restore
+# only nesting, which is explicitly required by this appliance.
 if pct config "$container_id" | grep -q '^features:'; then
   pct set "$container_id" --delete features >/dev/null
 fi
+pct set "$container_id" --features nesting=1 >/dev/null
 
 pct set "$container_id" --onboot 1 --swap 1024 >/dev/null
 
@@ -359,8 +360,15 @@ fi
 
 features="$(configuration_value features)"
 case ",${features}," in
-  *,nesting=1,* | *,keyctl=1,* | *,fuse=1,* | *,mknod=1,*)
+  *,keyctl=1,* | *,fuse=1,* | *,mknod=1,*)
     fail "container $container_id has a forbidden LXC feature enabled"
+    ;;
+esac
+case ",${features}," in
+  *,nesting=1,*)
+    ;;
+  *)
+    fail "container $container_id is missing the required nesting feature"
     ;;
 esac
 

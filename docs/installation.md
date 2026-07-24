@@ -59,7 +59,7 @@ same way as other `curl | bash` installers. After that bootstrap, the script:
 3. downloads and verifies the signed LXC and application installers;
 4. selects suitable template and container storage;
 5. detects the Proxmox management bridge and VLAN;
-6. creates and audits the unprivileged LXC;
+6. creates and audits the unprivileged LXC with nesting enabled;
 7. copies the verified application installer into the LXC;
 8. verifies the signed release manifest and package digest;
 9. installs and starts the package;
