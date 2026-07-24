@@ -26,7 +26,7 @@ fail() {
 trap cleanup EXIT
 
 [[ "${EUID}" -eq 0 ]] || fail "run this command in the Proxmox root shell"
-[[ "$RELEASE_PUBLIC_KEY" != "RWSRvQRJKhWlzXJLLMSL9hDjc1WUzo09/7o1BmonsHV0qp0Jb0LZendD" ]] ||
+[[ "$RELEASE_PUBLIC_KEY" != "__UNRENDERED_RELEASE_KEY__" ]] ||
   fail "the public one-line installer has not been rendered for a release"
 
 for command_name in pveversion pvesh pct pvesm apt-get; do

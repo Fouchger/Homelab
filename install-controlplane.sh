@@ -25,7 +25,7 @@ if [[ "${EUID}" -ne 0 ]]; then
   fail "run this installer as root: sudo bash install-controlplane.sh"
 fi
 
-if [[ "$RELEASE_PUBLIC_KEY" == "RWSRvQRJKhWlzXJLLMSL9hDjc1WUzo09/7o1BmonsHV0qp0Jb0LZendD" ]]; then
+if [[ "$RELEASE_PUBLIC_KEY" == "__UNRENDERED_RELEASE_KEY__" ]]; then
   fail "this is an unrendered development installer; use a signed release asset"
 fi
 
