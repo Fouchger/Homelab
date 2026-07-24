@@ -183,7 +183,9 @@ fi
 printf 'Installing Homelab Control Plane %s...\n' "$version"
 apt-get install --yes "$package_path" >/dev/null
 systemctl enable homelab-controlplane.service >/dev/null
+systemctl enable homelab-controlplane-updater.service >/dev/null
 systemctl restart homelab-controlplane.service
+systemctl restart homelab-controlplane-updater.service
 
 ready="false"
 for _ in {1..30}; do
@@ -203,6 +205,8 @@ fi
 
 dashboard_address="$(hostname -I 2>/dev/null | awk '{print $1}')"
 dashboard_address="${dashboard_address:-controlplane}"
+setup_code="$(journalctl -u homelab-controlplane.service -n 100 -o cat 2>/dev/null |
+  sed -n 's/.*first-run setup code: //p' | tail -n 1)"
 cat <<EOF
 
 Homelab Control Plane ${version} is installed and healthy.
@@ -213,3 +217,8 @@ The preview uses a local self-signed certificate, so your browser will show a
 certificate warning. Confirm that you opened the address shown above before
 continuing.
 EOF
+if [[ "$setup_code" =~ ^[0-9]{6}$ ]]; then
+  printf 'First-run setup code: %s\n' "$setup_code"
+  printf 'If the service is restarted before setup, retrieve the new code with:\n'
+  printf '  journalctl -u homelab-controlplane.service | grep "first-run setup code"\n'
+fi

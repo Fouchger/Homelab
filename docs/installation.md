@@ -86,6 +86,8 @@ journalctl -u homelab-controlplane --no-pager
 curl --insecure https://127.0.0.1:8443/readyz
 ```
 
-Rerunning the one-line command creates a new LXC. To repair an existing
-container, rerun `/root/install-controlplane.sh` from its console if that file
-was preserved after failure.
+Rerunning the one-line command creates a new LXC. The application installer is
+used only during initial provisioning and is removed afterward. Do not run a
+generic `/root/install-controlplane.sh` from the LXC: Community Scripts may
+place a different script at that path. Dashboard-initiated application updates
+will use a separate, signed updater channel once that feature is enabled.

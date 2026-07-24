@@ -185,13 +185,13 @@ done
   fail "the new LXC could not resolve github.com"
 
 pct push "$created_container_id" "$installer_path" \
-  /root/install-controlplane.sh --perms 0755 >/dev/null ||
+  /root/homelab-controlplane-installer.sh --perms 0755 >/dev/null ||
   fail "could not copy the application installer into the LXC"
 pct exec "$created_container_id" -- \
-  bash /root/install-controlplane.sh ||
+  bash /root/homelab-controlplane-installer.sh ||
   fail "application installation failed"
 pct exec "$created_container_id" -- \
-  rm -f /root/install-controlplane.sh >/dev/null || true
+  rm -f /root/homelab-controlplane-installer.sh >/dev/null || true
 
 printf '\nAutomated installation completed successfully in container %s.\n' \
   "$created_container_id"
