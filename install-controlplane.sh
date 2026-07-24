@@ -181,7 +181,15 @@ if dpkg-query -W -f='${Status}' "$PRODUCT_NAME" 2>/dev/null |
 fi
 
 printf 'Installing Homelab Control Plane %s...\n' "$version"
-apt-get install --yes "$package_path" >/dev/null
+if ! apt-get install --yes "$package_path"; then
+  printf '\nPackage installation failed. Diagnostics follow:\n' >&2
+  dpkg --audit >&2 || true
+  dpkg-query -W -f='${Package} ${Status} ${Version}\n' "$PRODUCT_NAME" >&2 || true
+  systemctl --no-pager --full status homelab-controlplane.service >&2 || true
+  systemctl --no-pager --full status homelab-controlplane-updater.service >&2 || true
+  journalctl -u homelab-controlplane.service -u homelab-controlplane-updater.service -n 100 --no-pager >&2 || true
+  fail "the Debian package could not be installed; resolve the error above before retrying"
+fi
 systemctl enable homelab-controlplane.service >/dev/null
 systemctl enable homelab-controlplane-updater.service >/dev/null
 systemctl restart homelab-controlplane.service
