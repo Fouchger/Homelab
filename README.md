@@ -1,5 +1,9 @@
 # Homelab Control Plane
 
+[![Issues](https://img.shields.io/github/issues/Fouchger/homelab?label=issues)](https://github.com/Fouchger/homelab/issues)
+[![Pull requests](https://img.shields.io/github/issues-pr/Fouchger/homelab?label=pull%20requests)](https://github.com/Fouchger/homelab/pulls)
+[![Latest release](https://img.shields.io/github/v/release/Fouchger/homelab?include_prereleases&label=latest%20release)](https://github.com/Fouchger/homelab/releases)
+
 Homelab Control Plane is a self-hosted appliance with a guided web dashboard
 for managing supported Proxmox resources, Linux servers, network equipment, and
 services.
