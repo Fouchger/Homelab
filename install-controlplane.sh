@@ -217,8 +217,10 @@ The preview uses a local self-signed certificate, so your browser will show a
 certificate warning. Confirm that you opened the address shown above before
 continuing.
 EOF
-if [[ "$setup_code" =~ ^[0-9]{6}$ ]]; then
+if [[ -n "$setup_code" ]]; then
   printf 'First-run setup code: %s\n' "$setup_code"
-  printf 'If the service is restarted before setup, retrieve the new code with:\n'
-  printf '  journalctl -u homelab-controlplane.service | grep "first-run setup code"\n'
+else
+  printf 'First-run setup code: not available in installer output\n'
 fi
+printf 'If the service is restarted before setup, retrieve the newest code with:\n'
+printf '  journalctl -u homelab-controlplane.service --no-pager | grep "first-run setup code"\n'
