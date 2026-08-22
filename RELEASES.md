@@ -7,6 +7,7 @@
 | --- | --- | --- | --- | --- |
 | `v0.1.0-test.2` | 🧪 Test | 2026-08-22 | `3daf78786427` | [Release notes](releases/v0.1.0-test.2.md) |
 | `v0.1.0-test.1` | 🧪 Test | 2026-08-22 | `68132f1ef595` | [Release notes](releases/v0.1.0-test.1.md) |
+| `v0.0.2-test.4` | 🧪 Test | 2026-08-22 | `da313ceae869` | [Release notes](releases/v0.0.2-test.4.md) |
 | `v0.0.2-test.3` | 🧪 Test | 2026-08-22 | `aad7f056af98` | [Release notes](releases/v0.0.2-test.3.md) |
 | `v0.0.2-test.2` | 🧪 Test | 2026-08-22 | `4c3cc654a405` | [Release notes](releases/v0.0.2-test.2.md) |
 | `v0.0.2-test.1` | 🧪 Test | 2026-08-22 | `4c3cc654a405` | [Release notes](releases/v0.0.2-test.1.md) |
